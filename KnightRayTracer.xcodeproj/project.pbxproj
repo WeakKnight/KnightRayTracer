@@ -1,0 +1,308 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DE458CFE1DEC0E9900CD6FE7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE458CFD1DEC0E9900CD6FE7 /* AppDelegate.swift */; };
+		DE458D001DEC0E9900CD6FE7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE458CFF1DEC0E9900CD6FE7 /* ViewController.swift */; };
+		DE458D021DEC0E9900CD6FE7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE458D011DEC0E9900CD6FE7 /* Assets.xcassets */; };
+		DE458D051DEC0E9900CD6FE7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE458D031DEC0E9900CD6FE7 /* Main.storyboard */; };
+		DE458D0F1DEC0F5600CD6FE7 /* pixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE458D0C1DEC0F5600CD6FE7 /* pixel.swift */; };
+		DE458D101DEC0F5600CD6FE7 /* things.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE458D0D1DEC0F5600CD6FE7 /* things.swift */; };
+		DE458D111DEC0F5600CD6FE7 /* material.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE458D0E1DEC0F5600CD6FE7 /* material.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		DE458CFA1DEC0E9900CD6FE7 /* KnightRayTracer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KnightRayTracer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE458CFD1DEC0E9900CD6FE7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		DE458CFF1DEC0E9900CD6FE7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DE458D011DEC0E9900CD6FE7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DE458D041DEC0E9900CD6FE7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		DE458D061DEC0E9900CD6FE7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DE458D0C1DEC0F5600CD6FE7 /* pixel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pixel.swift; sourceTree = "<group>"; };
+		DE458D0D1DEC0F5600CD6FE7 /* things.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = things.swift; sourceTree = "<group>"; };
+		DE458D0E1DEC0F5600CD6FE7 /* material.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = material.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DE458CF71DEC0E9900CD6FE7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DE458CF11DEC0E9900CD6FE7 = {
+			isa = PBXGroup;
+			children = (
+				DE458CFC1DEC0E9900CD6FE7 /* KnightRayTracer */,
+				DE458CFB1DEC0E9900CD6FE7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DE458CFB1DEC0E9900CD6FE7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DE458CFA1DEC0E9900CD6FE7 /* KnightRayTracer.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DE458CFC1DEC0E9900CD6FE7 /* KnightRayTracer */ = {
+			isa = PBXGroup;
+			children = (
+				DE458D0C1DEC0F5600CD6FE7 /* pixel.swift */,
+				DE458D0D1DEC0F5600CD6FE7 /* things.swift */,
+				DE458D0E1DEC0F5600CD6FE7 /* material.swift */,
+				DE458CFD1DEC0E9900CD6FE7 /* AppDelegate.swift */,
+				DE458CFF1DEC0E9900CD6FE7 /* ViewController.swift */,
+				DE458D011DEC0E9900CD6FE7 /* Assets.xcassets */,
+				DE458D031DEC0E9900CD6FE7 /* Main.storyboard */,
+				DE458D061DEC0E9900CD6FE7 /* Info.plist */,
+			);
+			path = KnightRayTracer;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DE458CF91DEC0E9900CD6FE7 /* KnightRayTracer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DE458D091DEC0E9900CD6FE7 /* Build configuration list for PBXNativeTarget "KnightRayTracer" */;
+			buildPhases = (
+				DE458CF61DEC0E9900CD6FE7 /* Sources */,
+				DE458CF71DEC0E9900CD6FE7 /* Frameworks */,
+				DE458CF81DEC0E9900CD6FE7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KnightRayTracer;
+			productName = KnightRayTracer;
+			productReference = DE458CFA1DEC0E9900CD6FE7 /* KnightRayTracer.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DE458CF21DEC0E9900CD6FE7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0800;
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = Knight;
+				TargetAttributes = {
+					DE458CF91DEC0E9900CD6FE7 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 274Y93SC8S;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = DE458CF51DEC0E9900CD6FE7 /* Build configuration list for PBXProject "KnightRayTracer" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DE458CF11DEC0E9900CD6FE7;
+			productRefGroup = DE458CFB1DEC0E9900CD6FE7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DE458CF91DEC0E9900CD6FE7 /* KnightRayTracer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DE458CF81DEC0E9900CD6FE7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DE458D021DEC0E9900CD6FE7 /* Assets.xcassets in Resources */,
+				DE458D051DEC0E9900CD6FE7 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DE458CF61DEC0E9900CD6FE7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DE458D111DEC0F5600CD6FE7 /* material.swift in Sources */,
+				DE458D101DEC0F5600CD6FE7 /* things.swift in Sources */,
+				DE458D001DEC0E9900CD6FE7 /* ViewController.swift in Sources */,
+				DE458CFE1DEC0E9900CD6FE7 /* AppDelegate.swift in Sources */,
+				DE458D0F1DEC0F5600CD6FE7 /* pixel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		DE458D031DEC0E9900CD6FE7 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DE458D041DEC0E9900CD6FE7 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DE458D071DEC0E9900CD6FE7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		DE458D081DEC0E9900CD6FE7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+			};
+			name = Release;
+		};
+		DE458D0A1DEC0E9900CD6FE7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 274Y93SC8S;
+				INFOPLIST_FILE = KnightRayTracer/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = KnightGames.KnightRayTracer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		DE458D0B1DEC0E9900CD6FE7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 274Y93SC8S;
+				INFOPLIST_FILE = KnightRayTracer/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = KnightGames.KnightRayTracer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DE458CF51DEC0E9900CD6FE7 /* Build configuration list for PBXProject "KnightRayTracer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DE458D071DEC0E9900CD6FE7 /* Debug */,
+				DE458D081DEC0E9900CD6FE7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DE458D091DEC0E9900CD6FE7 /* Build configuration list for PBXNativeTarget "KnightRayTracer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DE458D0A1DEC0E9900CD6FE7 /* Debug */,
+				DE458D0B1DEC0E9900CD6FE7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DE458CF21DEC0E9900CD6FE7 /* Project object */;
+}
