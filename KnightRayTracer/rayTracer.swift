@@ -29,7 +29,7 @@ class RayTracer{
                 for _ in 0..<samplerCount {
                     let u = (Float(i) + Float(drand48()))/Float(width);
                     let v = (Float(j) + Float(drand48()))/Float(height);
-                    let r = cam.get_ray(s: u, t: v);
+                    let r = cam.getRay(s: u, t: v);
                     col += scene.color(ray: r)
                 }
                 col /= float3(Float(samplerCount));

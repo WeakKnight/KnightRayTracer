@@ -113,8 +113,7 @@ class Mesh{
 }
 
 struct Camera {
-    let lower_left_corner, horizontal, vertical, origin, u, v, w: float3
-    var lens_radius: Float = 0.0
+    let bottomLeft, horizontal, vertical, origin, u, v, w: float3
     init(lookFrom: float3, lookAt: float3, vup: float3, vfov: Float, aspect: Float) {
         let theta = vfov * Float(M_PI) / 180
         let half_height = tan(theta / 2)
@@ -123,12 +122,12 @@ struct Camera {
         w = normalize(lookFrom - lookAt)
         u = normalize(cross(vup, w))
         v = cross(w, u)
-        lower_left_corner = origin - half_width * u - half_height * v - w
+        bottomLeft = origin - half_width * u - half_height * v - w
         horizontal = 2 * half_width * u
         vertical = 2 * half_height * v
     }
-    func get_ray(s: Float, t: Float) -> Ray {
-        return Ray(origin: origin, direction: lower_left_corner + s * horizontal + t * vertical - origin)
+    func getRay(s: Float, t: Float) -> Ray {
+        return Ray(origin: origin, direction: bottomLeft + s * horizontal + t * vertical - origin)
     }
 }
 
