@@ -41,29 +41,53 @@ class Sphere:Hitable{
         material = pmaterial;
     }
     
+//    func hit(ray:Ray) -> HitResult {
+//        let result = HitResult(pisHit:false, pdistance: -1,pnormal: float3(),phitVector: float3());
+//        let oc = center - ray.origin;
+//        let or = ray.origin + normalize(ray.direction);
+//        if(dot(oc,or) < 0){
+//            return result;
+//        }
+//        let od = dot(oc,or)*or;
+//        let cd = od - oc;
+//        if(length(cd) > radius){
+//            return result;
+//        }
+//        else{
+//            let pdLength = sqrt(radius*radius-length_squared(cd));
+//            let opLength = length(od) - pdLength;
+//            let op = opLength * or;
+//            result.isHit = true;
+//            result.distance = opLength;
+//            result.normal = normalize(op - oc);
+//            result.hitVector = op;
+//            result.material = material;
+//            return result;
+//        }
+//    }
     func hit(ray:Ray) -> HitResult {
         let result = HitResult(pisHit:false, pdistance: -1,pnormal: float3(),phitVector: float3());
-        let oc = center - ray.origin;
-        let or = ray.origin + normalize(ray.direction);
-        if(dot(oc,or) < 0){
-            return result;
+        let oc = ray.origin - center
+        let a = dot(ray.direction, ray.direction)
+        let b = dot(oc, ray.direction)
+        let c = dot(oc, oc) - radius*radius
+        let discriminant = b*b - a*c
+        if discriminant > 0 {
+            var t = (-b - sqrt(discriminant) ) / a
+            if t < 0.001 {
+                t = (-b + sqrt(discriminant) ) / a
+            }
+            if 0.001 < t && t < Float.infinity {
+                result.distance = t;
+                result.hitVector = ray.origin + ray.direction*result.distance; // r.point_at_parameter(rec.t)
+                result.normal = (result.hitVector - center) / float3(radius)
+                result.material = material;
+                result.isHit = true;
+                return result;
+            }
         }
-        let od = dot(oc,or)*or;
-        let cd = od - oc;
-        if(length(cd) > radius){
-            return result;
-        }
-        else{
-            let pdLength = sqrt(radius*radius-length_squared(cd));
-            let opLength = length(od) - pdLength;
-            let op = opLength * or;
-            result.isHit = true;
-            result.distance = opLength;
-            result.normal = normalize(op - oc);
-            result.hitVector = op;
-            result.material = material;
-            return result;
-        }
+        result.isHit = false;
+        return result;
     }
 }
 
