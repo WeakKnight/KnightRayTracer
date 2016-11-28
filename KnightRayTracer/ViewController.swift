@@ -12,7 +12,7 @@ class ViewController: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let cgImage = imageFromPixels(width: 800, height: 400);
+        let cgImage = imageFromPixels(width: 800, height: 400, samplerCount: 100);
         let size:NSSize = NSSize.init(width: 800, height: 400);
         let nsImage:NSImage = NSImage.init(cgImage:cgImage , size: size);
         imageView.image = nsImage;

@@ -14,7 +14,7 @@ public struct Pixel {
     }
 }
 
-public func imageFromPixels(width: Int, height: Int) -> CGImage {
+public func imageFromPixels(width: Int, height: Int, samplerCount:Int = 10) -> CGImage {
     //---------------make pixels----------------------//
     var pixel = Pixel(red: 0, green: 0, blue: 0)
     var pixels = [Pixel](repeating: pixel,count: width * height)
@@ -37,15 +37,14 @@ public func imageFromPixels(width: Int, height: Int) -> CGImage {
     //
     for i in 0..<width {
         for j in 0..<height {
-            let ns = 5
             var col = float3()
-            for _ in 0..<ns {
+            for _ in 0..<samplerCount {
                 let u = (Float(i) + Float(drand48()))/Float(width);
                 let v = (Float(j) + Float(drand48()))/Float(height);
                 let r = cam.get_ray(s: u, t: v);
                 col += scene.color(ray: r)
             }
-            col /= float3(Float(ns));
+            col /= float3(Float(samplerCount));
             pixel = Pixel(red: UInt8(col.x * 255), green: UInt8(col.y * 255), blue: UInt8(col.z * 255))
             pixels[i + j * width] = pixel
         }
