@@ -11,9 +11,10 @@
 		DE458D001DEC0E9900CD6FE7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE458CFF1DEC0E9900CD6FE7 /* ViewController.swift */; };
 		DE458D021DEC0E9900CD6FE7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE458D011DEC0E9900CD6FE7 /* Assets.xcassets */; };
 		DE458D051DEC0E9900CD6FE7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE458D031DEC0E9900CD6FE7 /* Main.storyboard */; };
-		DE458D0F1DEC0F5600CD6FE7 /* pixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE458D0C1DEC0F5600CD6FE7 /* pixel.swift */; };
+		DE458D0F1DEC0F5600CD6FE7 /* rayTracer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE458D0C1DEC0F5600CD6FE7 /* rayTracer.swift */; };
 		DE458D101DEC0F5600CD6FE7 /* things.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE458D0D1DEC0F5600CD6FE7 /* things.swift */; };
 		DE458D111DEC0F5600CD6FE7 /* material.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE458D0E1DEC0F5600CD6FE7 /* material.swift */; };
+		DEB908001DEC206A0099CC80 /* util.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB907FF1DEC206A0099CC80 /* util.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,9 +24,10 @@
 		DE458D011DEC0E9900CD6FE7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DE458D041DEC0E9900CD6FE7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DE458D061DEC0E9900CD6FE7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DE458D0C1DEC0F5600CD6FE7 /* pixel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pixel.swift; sourceTree = "<group>"; };
+		DE458D0C1DEC0F5600CD6FE7 /* rayTracer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rayTracer.swift; sourceTree = "<group>"; };
 		DE458D0D1DEC0F5600CD6FE7 /* things.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = things.swift; sourceTree = "<group>"; };
 		DE458D0E1DEC0F5600CD6FE7 /* material.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = material.swift; sourceTree = "<group>"; };
+		DEB907FF1DEC206A0099CC80 /* util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = util.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,9 +60,10 @@
 		DE458CFC1DEC0E9900CD6FE7 /* KnightRayTracer */ = {
 			isa = PBXGroup;
 			children = (
-				DE458D0C1DEC0F5600CD6FE7 /* pixel.swift */,
+				DE458D0C1DEC0F5600CD6FE7 /* rayTracer.swift */,
 				DE458D0D1DEC0F5600CD6FE7 /* things.swift */,
 				DE458D0E1DEC0F5600CD6FE7 /* material.swift */,
+				DEB907FF1DEC206A0099CC80 /* util.swift */,
 				DE458CFD1DEC0E9900CD6FE7 /* AppDelegate.swift */,
 				DE458CFF1DEC0E9900CD6FE7 /* ViewController.swift */,
 				DE458D011DEC0E9900CD6FE7 /* Assets.xcassets */,
@@ -145,8 +148,9 @@
 				DE458D111DEC0F5600CD6FE7 /* material.swift in Sources */,
 				DE458D101DEC0F5600CD6FE7 /* things.swift in Sources */,
 				DE458D001DEC0E9900CD6FE7 /* ViewController.swift in Sources */,
+				DEB908001DEC206A0099CC80 /* util.swift in Sources */,
 				DE458CFE1DEC0E9900CD6FE7 /* AppDelegate.swift in Sources */,
-				DE458D0F1DEC0F5600CD6FE7 /* pixel.swift in Sources */,
+				DE458D0F1DEC0F5600CD6FE7 /* rayTracer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,6 +305,7 @@
 				DE458D0B1DEC0E9900CD6FE7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

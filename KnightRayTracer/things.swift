@@ -1,6 +1,19 @@
 import Foundation
 import simd
 
+public struct Pixel {
+    var r: UInt8
+    var g: UInt8
+    var b: UInt8
+    var a: UInt8
+    init(red: UInt8, green: UInt8, blue: UInt8) {
+        r = red
+        g = green
+        b = blue
+        a = 255
+    }
+}
+
 struct Ray {
     var origin: float3
     var direction: float3
@@ -91,12 +104,12 @@ class Sphere:Hitable{
     }
 }
 
-func random_in_unit_sphere() -> float3 {
-    var p = float3()
-    repeat {
-        p = 2.0 * float3(x: Float(drand48()), y: Float(drand48()), z: Float(drand48())) - float3(x: 1, y: 1, z: 1)
-    } while dot(p, p) >= 1.0
-    return p
+class Box{
+    
+}
+
+class Mesh{
+    
 }
 
 struct Camera {
