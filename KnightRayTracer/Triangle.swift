@@ -8,6 +8,7 @@
 
 import Foundation
 import simd
+
 class Triangle:Hitable{
     var v0:float3 = float3();
     var v1:float3 = float3();
@@ -22,12 +23,12 @@ class Triangle:Hitable{
     func hit(ray: Ray) -> HitResult {
         var result = HitResult(pisHit:false, pdistance: -1,pnormal: float3(),phitVector: float3(),pmaterial:material);
         let orig = ray.origin;
-        let dir = ray.direction;
+        let dir = normalize(ray.direction);
         var t:Float = 0;
         let v0v1 = v1 - v0;
         let v0v2 = v2 - v0;
         // no need to normalize
-        let N = cross(v0v1, v0v2); // N
+        let N = normalize(cross(v0v1, v0v2)); // N
         //let area2 = length(N);
         
         // Step 1: finding P
@@ -80,8 +81,14 @@ class Triangle:Hitable{
         {
             return result;
         } // P is on the right side;
+        #if false
+        NSLog("hello");
+        if (dot(dir, N) > 0){
+                return result;
+        }
+        #endif
+        
         result = HitResult(pisHit:true, pdistance: t,pnormal: normalize(N),phitVector: orig + t*dir,pmaterial:material);
-        result.material = material;
         return result;
     }
 }

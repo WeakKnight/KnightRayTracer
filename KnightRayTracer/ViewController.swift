@@ -28,11 +28,6 @@ class ViewController: NSViewController {
     
     override func viewDidAppear(){
         super.viewDidAppear();
-//        let rayTrecer = RayTracer();
-//        let cgImage = rayTrecer.makeTracingResult(width: 800, height: 400, samplerCount: 10);
-//        let size:NSSize = NSSize.init(width: 800, height: 400);
-//        let nsImage:NSImage = NSImage.init(cgImage:cgImage , size: size);
-//        self.imageView.image = nsImage;
     }
     
     override var representedObject: Any? {

@@ -12,7 +12,12 @@ class Lambertian: Material {
     }
     
     func scatter(ray:Ray,hitRes:HitResult)->(isScatter:Bool,scatterRay:Ray,attenuation:float3){
-        let scattered = Ray(origin:hitRes.hitVector, direction: hitRes.normal + randomVectorInUnitSphere());
+        var scattered = Ray(origin:hitRes.hitVector, direction: normalize(hitRes.normal + randomVectorInUnitSphere()));
+        scattered.origin = scattered.origin + scattered.direction * FLT_EPSILON;
+//        NSLog(scattered.origin.debugDescription);
+//        NSLog(scattered.direction.debugDescription);
+//        NSLog(hitRes.normal.debugDescription);
+//        NSLog(hitRes.hitVector.debugDescription);
         return (isScatter:true,scatterRay:scattered,attenuation:albedo);
     }
 }
@@ -31,7 +36,8 @@ class Metal: Material{
     
     func scatter(ray:Ray,hitRes:HitResult)->(isScatter:Bool,scatterRay:Ray,attenuation:float3){
         let reflectRay = reflect(normalize(ray.direction), n: hitRes.normal);
-        let scattered = Ray(origin: hitRes.hitVector, direction: reflectRay + fuzz * randomVectorInUnitSphere());
+        var scattered = Ray(origin: hitRes.hitVector, direction: reflectRay + fuzz * randomVectorInUnitSphere());
+        scattered.origin = scattered.origin + scattered.direction * FLT_EPSILON;
         if(dot(scattered.direction, hitRes.normal)>0){
             return (isScatter:true,scatterRay:scattered,attenuation:albedo);
         }

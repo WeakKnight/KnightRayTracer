@@ -191,6 +191,26 @@ class Box:Hitable{
         material = pmaterial;
     }
     func normalAt(point:float3)->float3{
+        if(nearlyEqual(value: point.x, compare: bounds[0].x, tolerance: 0.0001)){
+            return float3(-1,0,0);
+        }
+        if(nearlyEqual(value: point.x, compare: bounds[1].x, tolerance: 0.0001)){
+            return float3(1,0,0);
+        }
+        if(nearlyEqual(value: point.y, compare: bounds[0].y, tolerance: 0.0001)){
+            return float3(0,-1,0);
+        }
+        if(nearlyEqual(value: point.y, compare: bounds[1].y, tolerance: 0.0001)){
+            return float3(0,1,0);
+        }
+        if(nearlyEqual(value: point.z, compare: bounds[0].z, tolerance: 0.0001)){
+            return float3(0,0,-1);
+        }
+        if(nearlyEqual(value: point.z, compare: bounds[1].z, tolerance: 0.0001)){
+            return float3(0,0,1);
+        }
+        return float3();
+        ////
         let center = (bounds[0] + bounds[1])*0.5;
         let localPoint = point - center;
         var min:Float = Float.infinity;
@@ -272,7 +292,7 @@ class Box:Hitable{
             }
         }
         //true
-        return HitResult(pisHit:true, pdistance: t,pnormal: normalAt(point: ray.origin + ray.direction*t),phitVector: ray.origin + ray.direction*t,pmaterial:material);
+        return HitResult(pisHit:true, pdistance: t,pnormal: normalAt(point: ray.origin + ray.direction*t),phitVector: ray.origin + ray.direction*(t),pmaterial:material);
     }
 }
 
@@ -296,47 +316,5 @@ struct Camera {
     }
     func getRay(s: Float, t: Float) -> Ray {
         return Ray(origin: origin, direction: normalize(bottomLeft + s * horizontal + t * vertical - origin))
-    }
-}
-
-class Scene:Hitable{
-    var thingList = [Hitable]();
-    
-    func addThing(thing:Hitable){
-        thingList.append(thing);
-    }
-    
-    func hit(ray:Ray) -> HitResult {
-        var distance = Float.infinity
-        var result = HitResult(pisHit:false, pdistance: -1,pnormal: float3(),phitVector: float3(),pmaterial:Lambertian(palbedo:float3(x: 0, y: 0.7, z: 0.3)));
-        for thing in thingList{
-            let thingResult = thing.hit(ray: ray)
-            if(thingResult.isHit){
-                if(thingResult.distance < distance){
-                    distance = thingResult.distance;
-                    result = thingResult;
-                }
-            }
-        }
-        return result;
-    }
-    
-    func color(ray:Ray,calDepth:Int = 0)->float3{
-        let nextDepth = calDepth + 1;
-        let hitResult = hit(ray: ray);
-        if(hitResult.isHit){
-            let scatterResult = hitResult.material.scatter(ray: ray, hitRes: hitResult);
-            if(scatterResult.isScatter && calDepth < 70){
-                return scatterResult.attenuation * color(ray: scatterResult.scatterRay,calDepth: nextDepth);
-            }
-            else{
-                return float3(0,0,0);
-            }
-        }
-        else{
-            let unit_direction = normalize(ray.direction)
-            let t = 0.5 * (unit_direction.y + 1)
-            return (1.0 - t) * float3(x: 1, y: 1, z: 1) + t * float3(x: 0.5, y: 0.7, z: 1.0)
-        }
     }
 }

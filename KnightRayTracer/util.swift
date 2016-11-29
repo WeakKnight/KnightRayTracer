@@ -9,6 +9,15 @@
 import Foundation
 import simd;
 
+func nearlyEqual(value:Float,compare:Float,tolerance:Float)->Bool{
+    if(abs(value - compare)<tolerance){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
 func randomVectorInUnitSphere() -> float3 {
     var p = float3()
     repeat {
