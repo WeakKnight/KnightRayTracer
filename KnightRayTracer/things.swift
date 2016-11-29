@@ -210,31 +210,6 @@ class Box:Hitable{
             return float3(0,0,1);
         }
         return float3();
-        ////
-        let center = (bounds[0] + bounds[1])*0.5;
-        let localPoint = point - center;
-        var min:Float = Float.infinity;
-        let size = bounds[1]-bounds[0];
-        var distance = abs(size.x - abs(localPoint.x));
-        var normal = float3();
-        if(distance < min){
-            min = distance;
-            normal = float3(1,0,0);
-            normal *= sign(localPoint.x);
-        }
-        distance = abs(size.y - abs(localPoint.y));
-        if(distance < min){
-            min = distance;
-            normal = float3(0,1,0);
-            normal *= sign(localPoint.y);
-        }
-        distance = abs(size.z - abs(localPoint.z));
-        if(distance < min){
-            min = distance;
-            normal = float3(0,0,1);
-            normal *= sign(localPoint.z);
-        }
-        return normal;
     }
     func hit(ray:Ray) -> HitResult{
         var sign = [Int]();
