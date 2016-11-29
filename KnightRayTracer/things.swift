@@ -104,8 +104,116 @@ class Sphere:Hitable{
     }
 }
 
-class Box{
-    
+class Box:Hitable{
+    var material:Material = Lambertian(palbedo:float3(x: 0, y: 0.7, z: 0.3));
+    var minVertex:float3 = float3();
+    var maxVertex:float3 = float3();
+    init(pminVertex:float3,pmaxVertex:float3,pmaterial:Material){
+        minVertex = pminVertex;
+        maxVertex = pmaxVertex;
+        material = pmaterial;
+    }
+    /**
+     *                     maxVertex
+     *       _______________
+     *      /               /
+     *     / |             /|
+     *    /  |            / |
+     *    ----------------  |
+     *   |   |           |  |
+     *   |   |           |  |
+     *   |   |           |  |
+     *   |   |           |  |
+     *   |   ------------|--
+     *   |  /            | /
+     *   | /             |/
+     *   |/______________/
+     *  minVertex
+     */
+    func hit(ray:Ray) -> HitResult{
+        var result = HitResult(pisHit:false, pdistance: -1,pnormal: float3(),phitVector: float3());
+        result.material = material;
+        //to minx
+        var distance = Float.infinity;
+        var deltaX = minVertex.x - ray.origin.x;
+        var deltaY = deltaX * (ray.direction.y/ray.direction.x);
+        var deltaZ = deltaX * (ray.direction.z/ray.direction.x);
+        var hitLine = float3(deltaX,deltaY,deltaZ);
+        var minY:Float = ray.origin.y + deltaY;
+        var minZ:Float = ray.origin.z + deltaZ;
+        if(minVertex.y < minY && minY < maxVertex.y && minVertex.z < minZ && minZ < maxVertex.z){
+            if(length(hitLine) < distance){
+                distance = length(hitLine);
+                result = HitResult(pisHit:true, pdistance: length(hitLine),pnormal: float3(-1,0,0),phitVector: ray.origin + hitLine);
+            }
+        }
+        //to miny
+        deltaY = minVertex.y - ray.origin.y;
+        deltaX = deltaY * (ray.direction.x/ray.direction.y);
+        deltaZ = deltaY * (ray.direction.z/ray.direction.y);
+        hitLine = float3(deltaX,deltaY,deltaZ);
+        var minX:Float = ray.origin.x + deltaX;
+        minZ = ray.origin.z + deltaZ;
+        if(minVertex.x < minX && minX < maxVertex.x && minVertex.z < minZ && minZ < maxVertex.z){
+            if(length(hitLine) < distance){
+                distance = length(hitLine);
+                result = HitResult(pisHit:true, pdistance: length(hitLine),pnormal: float3(0,-1,0),phitVector: ray.origin + hitLine);
+            }
+        }
+        //to minz
+        deltaZ = minVertex.z - ray.origin.z;
+        deltaX = deltaZ * (ray.direction.x/ray.direction.z);
+        deltaY = deltaZ * (ray.direction.y/ray.direction.z);
+        hitLine = float3(deltaX,deltaY,deltaZ);
+        minX = ray.origin.x + deltaX;
+        minY = ray.origin.y + deltaY;
+        if(minVertex.x < minX && minX < maxVertex.x && minVertex.y < minY && minY < maxVertex.y){
+            if(length(hitLine) < distance){
+                distance = length(hitLine);
+                result = HitResult(pisHit:true, pdistance: length(hitLine),pnormal: float3(0,0,-1),phitVector: ray.origin + hitLine);
+            }
+        }
+        /////////to max
+        deltaZ = maxVertex.z - ray.origin.z;
+        deltaX = deltaZ * (ray.direction.x/ray.direction.z);
+        deltaY = deltaZ * (ray.direction.y/ray.direction.z);
+        hitLine = float3(deltaX,deltaY,deltaZ);
+        var maxX = ray.origin.x + deltaX;
+        var maxY = ray.origin.y + deltaY;
+        if(minVertex.x < maxX && maxX < maxVertex.x && minVertex.y < maxY && maxY < maxVertex.y){
+            if(length(hitLine) < distance){
+                distance = length(hitLine);
+                result = HitResult(pisHit:true, pdistance: length(hitLine),pnormal: float3(0,0,1),phitVector: ray.origin + hitLine);
+            }
+        }
+        //
+        deltaY = maxVertex.y - ray.origin.y;
+        deltaX = deltaY * (ray.direction.x/ray.direction.y);
+        deltaZ = deltaY * (ray.direction.z/ray.direction.y);
+        hitLine = float3(deltaX,deltaY,deltaZ);
+        maxX = ray.origin.x + deltaX;
+        var maxZ = ray.origin.z + deltaZ;
+        if(minVertex.x < maxX && maxX < maxVertex.x && minVertex.z < maxZ && maxZ < maxVertex.z){
+            if(length(hitLine) < distance){
+                distance = length(hitLine);
+                result = HitResult(pisHit:true, pdistance: length(hitLine),pnormal: float3(0,1,0),phitVector: ray.origin + hitLine);
+            }
+        }
+        //
+        deltaX = maxVertex.x - ray.origin.x;
+        deltaY = deltaX * (ray.direction.y/ray.direction.x);
+        deltaZ = deltaX * (ray.direction.z/ray.direction.x);
+        hitLine = float3(deltaX,deltaY,deltaZ);
+        maxY = ray.origin.y + deltaY;
+        maxZ = ray.origin.z + deltaZ;
+        if(minVertex.y < maxY && maxY < maxVertex.y && minVertex.z < maxZ && maxZ < maxVertex.z){
+            if(length(hitLine) < distance){
+                distance = length(hitLine);
+                result = HitResult(pisHit:true, pdistance: length(hitLine),pnormal: float3(1,0,0),phitVector: ray.origin + hitLine);
+            }
+        }
+        return result;
+    }
 }
 
 class Mesh{

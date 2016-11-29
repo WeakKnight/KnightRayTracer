@@ -14,6 +14,8 @@ class RayTracer{
         scene.addThing(thing: sphere1);
         let sphere2 = Sphere(pcenter: float3(-0.1,0.0,-1),pradius: 0.2,pmaterial:Metal(palbedo:float3(x: 0.8, y: 0.3, z: 0.4),pfuzz:0.1));
         scene.addThing(thing: sphere2);
+//        let box1 = Box(pminVertex:float3(-0.5,0,-1),pmaxVertex:float3(-0.3,0.2,-0.8),pmaterial:Lambertian(palbedo:float3(x: 0.8, y: 0.7, z: 0.6)));
+//        scene.addThing(thing: box1);
         //
         //i:x
         //j:y
