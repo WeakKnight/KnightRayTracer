@@ -15,6 +15,8 @@
 		DE458D101DEC0F5600CD6FE7 /* things.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE458D0D1DEC0F5600CD6FE7 /* things.swift */; };
 		DE458D111DEC0F5600CD6FE7 /* material.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE458D0E1DEC0F5600CD6FE7 /* material.swift */; };
 		DEB908001DEC206A0099CC80 /* util.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB907FF1DEC206A0099CC80 /* util.swift */; };
+		DEB908021DED28490099CC80 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB908011DED28490099CC80 /* Box.swift */; };
+		DEB908041DED37CB0099CC80 /* Triangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB908031DED37CB0099CC80 /* Triangle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		DE458D0D1DEC0F5600CD6FE7 /* things.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = things.swift; sourceTree = "<group>"; };
 		DE458D0E1DEC0F5600CD6FE7 /* material.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = material.swift; sourceTree = "<group>"; };
 		DEB907FF1DEC206A0099CC80 /* util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = util.swift; sourceTree = "<group>"; };
+		DEB908011DED28490099CC80 /* Box.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
+		DEB908031DED37CB0099CC80 /* Triangle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Triangle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +73,8 @@
 				DE458D011DEC0E9900CD6FE7 /* Assets.xcassets */,
 				DE458D031DEC0E9900CD6FE7 /* Main.storyboard */,
 				DE458D061DEC0E9900CD6FE7 /* Info.plist */,
+				DEB908011DED28490099CC80 /* Box.swift */,
+				DEB908031DED37CB0099CC80 /* Triangle.swift */,
 			);
 			path = KnightRayTracer;
 			sourceTree = "<group>";
@@ -146,11 +152,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE458D111DEC0F5600CD6FE7 /* material.swift in Sources */,
+				DEB908021DED28490099CC80 /* Box.swift in Sources */,
 				DE458D101DEC0F5600CD6FE7 /* things.swift in Sources */,
 				DE458D001DEC0E9900CD6FE7 /* ViewController.swift in Sources */,
 				DEB908001DEC206A0099CC80 /* util.swift in Sources */,
 				DE458CFE1DEC0E9900CD6FE7 /* AppDelegate.swift in Sources */,
 				DE458D0F1DEC0F5600CD6FE7 /* rayTracer.swift in Sources */,
+				DEB908041DED37CB0099CC80 /* Triangle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

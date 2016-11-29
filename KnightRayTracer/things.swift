@@ -29,12 +29,13 @@ class HitResult{
     var distance:Float = 0.0;
     var normal:float3 = float3();
     var hitVector:float3 = float3();
-    var material:Material = Lambertian(palbedo:float3(x: 0, y: 0.0, z: 0.0));
-    init(pisHit:Bool,pdistance:Float,pnormal:float3,phitVector:float3) {
+    var material:Material = Lambertian(palbedo:float3(x: 0.0, y: 0.0, z: 0.0));
+    init(pisHit:Bool,pdistance:Float,pnormal:float3,phitVector:float3,pmaterial:Material) {
         isHit = pisHit;
         distance = pdistance;
         normal = pnormal;
         hitVector = phitVector;
+        material = pmaterial;
     }
 }
 
@@ -54,32 +55,8 @@ class Sphere:Hitable{
         material = pmaterial;
     }
     
-//    func hit(ray:Ray) -> HitResult {
-//        let result = HitResult(pisHit:false, pdistance: -1,pnormal: float3(),phitVector: float3());
-//        let oc = center - ray.origin;
-//        let or = ray.origin + normalize(ray.direction);
-//        if(dot(oc,or) < 0){
-//            return result;
-//        }
-//        let od = dot(oc,or)*or;
-//        let cd = od - oc;
-//        if(length(cd) > radius){
-//            return result;
-//        }
-//        else{
-//            let pdLength = sqrt(radius*radius-length_squared(cd));
-//            let opLength = length(od) - pdLength;
-//            let op = opLength * or;
-//            result.isHit = true;
-//            result.distance = opLength;
-//            result.normal = normalize(op - oc);
-//            result.hitVector = op;
-//            result.material = material;
-//            return result;
-//        }
-//    }
     func hit(ray:Ray) -> HitResult {
-        let result = HitResult(pisHit:false, pdistance: -1,pnormal: float3(),phitVector: float3());
+        let result = HitResult(pisHit:false, pdistance: -1,pnormal: float3(),phitVector: float3(),pmaterial:material);
         let oc = ray.origin - center
         let a = dot(ray.direction, ray.direction)
         let b = dot(oc, ray.direction)
@@ -103,116 +80,199 @@ class Sphere:Hitable{
         return result;
     }
 }
-
+/**
+ *                     maxVertex
+ *       _______________
+ *      /               /
+ *     / |             /|
+ *    /  |            / |
+ *    ----------------  |
+ *   |   |           |  |
+ *   |   |           |  |
+ *   |   |           |  |
+ *   |   |           |  |
+ *   |   ------------|--
+ *   |  /            | /
+ *   | /             |/
+ *   |/______________/
+ *  minVertex
+ */
+/*
+ class Ray
+ {
+ public:
+ Ray(const Vec3f &orig, const Vec3f &dir) : orig(orig), dir(dir)
+ {
+ invdir = 1 / dir;
+ sign[0] = (invdir.x < 0);
+ sign[1] = (invdir.y < 0);
+ sign[2] = (invdir.z < 0);
+ }
+ Vec3f orig, dir; // ray orig and dir
+ Vec3f invdir;
+ int sign[3];
+ };
+ class AABBox
+ {
+ public:
+ AABBox(const Vec3f &b0, const Vec3f &b1) { bounds[0] = b0, bounds[1] = b1; }
+ bool intersect(const Ray &r, float &t) const
+ {
+ float tmin, tmax, tymin, tymax, tzmin, tzmax;
+ 
+ tmin = (bounds[r.sign[0]].x - r.orig.x) * r.invdir.x;
+ tmax = (bounds[1-r.sign[0]].x - r.orig.x) * r.invdir.x;
+ tymin = (bounds[r.sign[1]].y - r.orig.y) * r.invdir.y;
+ tymax = (bounds[1-r.sign[1]].y - r.orig.y) * r.invdir.y;
+ 
+ if ((tmin > tymax) || (tymin > tmax))
+ return false;
+ 
+ if (tymin > tmin)
+ tmin = tymin;
+ if (tymax < tmax)
+ tmax = tymax;
+ 
+ tzmin = (bounds[r.sign[2]].z - r.orig.z) * r.invdir.z;
+ tzmax = (bounds[1-r.sign[2]].z - r.orig.z) * r.invdir.z;
+ 
+ if ((tmin > tzmax) || (tzmin > tmax))
+ return false;
+ 
+ if (tzmin > tmin)
+ tmin = tzmin;
+ if (tzmax < tmax)
+ tmax = tzmax;
+ 
+ t = tmin;
+ 
+ if (t < 0) {
+ t = tmax;
+ if (t < 0) return false;
+ }
+ 
+ return true;
+ }
+ Vec3f bounds[2];
+ };
+ */
+/*
+ v3 Box::normalAt(const v3 &point) {
+ v3 normal;
+ v3 localPoint = point - center;
+ float min = std::numeric_limits<float>::max();
+ float distance = std::abs(size.x - std::abs(localPoint.x));
+ if (distance < min) {
+ min = distance;
+ normal.set(1, 0, 0);
+ normal *= SIGN(localPoint.x);
+ }
+ distance = std::abs(size.y - std::abs(localPoint.y));
+ if (distance < min) {
+ min = distance;
+ normal.set(0, 1, 0);
+ normal *= SIGN(localPoint.y);
+ }
+ distance = std::abs(size.z - std::abs(localPoint.z));
+ if (distance < min) {
+ min = distance;
+ normal.set(0, 0, 1);
+ normal *= SIGN(localPoint.z);
+ }
+ return normal;
+ }
+ */
 class Box:Hitable{
     var material:Material = Lambertian(palbedo:float3(x: 0, y: 0.7, z: 0.3));
-    var minVertex:float3 = float3();
-    var maxVertex:float3 = float3();
+    var bounds = [float3]();
     init(pminVertex:float3,pmaxVertex:float3,pmaterial:Material){
-        minVertex = pminVertex;
-        maxVertex = pmaxVertex;
+        bounds.append(pminVertex);
+        bounds.append(pmaxVertex);
         material = pmaterial;
     }
-    /**
-     *                     maxVertex
-     *       _______________
-     *      /               /
-     *     / |             /|
-     *    /  |            / |
-     *    ----------------  |
-     *   |   |           |  |
-     *   |   |           |  |
-     *   |   |           |  |
-     *   |   |           |  |
-     *   |   ------------|--
-     *   |  /            | /
-     *   | /             |/
-     *   |/______________/
-     *  minVertex
-     */
+    func normalAt(point:float3)->float3{
+        let center = (bounds[0] + bounds[1])*0.5;
+        let localPoint = point - center;
+        var min:Float = Float.infinity;
+        let size = bounds[1]-bounds[0];
+        var distance = abs(size.x - abs(localPoint.x));
+        var normal = float3();
+        if(distance < min){
+            min = distance;
+            normal = float3(1,0,0);
+            normal *= sign(localPoint.x);
+        }
+        distance = abs(size.y - abs(localPoint.y));
+        if(distance < min){
+            min = distance;
+            normal = float3(0,1,0);
+            normal *= sign(localPoint.y);
+        }
+        distance = abs(size.z - abs(localPoint.z));
+        if(distance < min){
+            min = distance;
+            normal = float3(0,0,1);
+            normal *= sign(localPoint.z);
+        }
+        return normal;
+    }
     func hit(ray:Ray) -> HitResult{
-        var result = HitResult(pisHit:false, pdistance: -1,pnormal: float3(),phitVector: float3());
-        result.material = material;
-        //to minx
-        var distance = Float.infinity;
-        var deltaX = minVertex.x - ray.origin.x;
-        var deltaY = deltaX * (ray.direction.y/ray.direction.x);
-        var deltaZ = deltaX * (ray.direction.z/ray.direction.x);
-        var hitLine = float3(deltaX,deltaY,deltaZ);
-        var minY:Float = ray.origin.y + deltaY;
-        var minZ:Float = ray.origin.z + deltaZ;
-        if(minVertex.y < minY && minY < maxVertex.y && minVertex.z < minZ && minZ < maxVertex.z){
-            if(length(hitLine) < distance){
-                distance = length(hitLine);
-                result = HitResult(pisHit:true, pdistance: length(hitLine),pnormal: float3(-1,0,0),phitVector: ray.origin + hitLine);
-            }
-        }
-        //to miny
-        deltaY = minVertex.y - ray.origin.y;
-        deltaX = deltaY * (ray.direction.x/ray.direction.y);
-        deltaZ = deltaY * (ray.direction.z/ray.direction.y);
-        hitLine = float3(deltaX,deltaY,deltaZ);
-        var minX:Float = ray.origin.x + deltaX;
-        minZ = ray.origin.z + deltaZ;
-        if(minVertex.x < minX && minX < maxVertex.x && minVertex.z < minZ && minZ < maxVertex.z){
-            if(length(hitLine) < distance){
-                distance = length(hitLine);
-                result = HitResult(pisHit:true, pdistance: length(hitLine),pnormal: float3(0,-1,0),phitVector: ray.origin + hitLine);
-            }
-        }
-        //to minz
-        deltaZ = minVertex.z - ray.origin.z;
-        deltaX = deltaZ * (ray.direction.x/ray.direction.z);
-        deltaY = deltaZ * (ray.direction.y/ray.direction.z);
-        hitLine = float3(deltaX,deltaY,deltaZ);
-        minX = ray.origin.x + deltaX;
-        minY = ray.origin.y + deltaY;
-        if(minVertex.x < minX && minX < maxVertex.x && minVertex.y < minY && minY < maxVertex.y){
-            if(length(hitLine) < distance){
-                distance = length(hitLine);
-                result = HitResult(pisHit:true, pdistance: length(hitLine),pnormal: float3(0,0,-1),phitVector: ray.origin + hitLine);
-            }
-        }
-        /////////to max
-        deltaZ = maxVertex.z - ray.origin.z;
-        deltaX = deltaZ * (ray.direction.x/ray.direction.z);
-        deltaY = deltaZ * (ray.direction.y/ray.direction.z);
-        hitLine = float3(deltaX,deltaY,deltaZ);
-        var maxX = ray.origin.x + deltaX;
-        var maxY = ray.origin.y + deltaY;
-        if(minVertex.x < maxX && maxX < maxVertex.x && minVertex.y < maxY && maxY < maxVertex.y){
-            if(length(hitLine) < distance){
-                distance = length(hitLine);
-                result = HitResult(pisHit:true, pdistance: length(hitLine),pnormal: float3(0,0,1),phitVector: ray.origin + hitLine);
-            }
-        }
+        var sign = [Int]();
+        let invdir:float3 = float3(1/ray.direction.x,1/ray.direction.y,1/ray.direction.z);
+        sign.append(Int(NSNumber(value:(invdir.x)<0)));
+        sign.append(Int(NSNumber(value:(invdir.y)<0)));
+        sign.append(Int(NSNumber(value:(invdir.z)<0)));
+        let result = HitResult(pisHit:false, pdistance: -1,pnormal: float3(),phitVector: float3(),pmaterial:material);
+        var t:Float = 0;
+        var tmin:Float = 0;
+        var tmax:Float = 0;
+        var tymin:Float = 0;
+        var tymax:Float = 0;
+        var tzmin:Float = 0;
+        var tzmax:Float = 0;
         //
-        deltaY = maxVertex.y - ray.origin.y;
-        deltaX = deltaY * (ray.direction.x/ray.direction.y);
-        deltaZ = deltaY * (ray.direction.z/ray.direction.y);
-        hitLine = float3(deltaX,deltaY,deltaZ);
-        maxX = ray.origin.x + deltaX;
-        var maxZ = ray.origin.z + deltaZ;
-        if(minVertex.x < maxX && maxX < maxVertex.x && minVertex.z < maxZ && maxZ < maxVertex.z){
-            if(length(hitLine) < distance){
-                distance = length(hitLine);
-                result = HitResult(pisHit:true, pdistance: length(hitLine),pnormal: float3(0,1,0),phitVector: ray.origin + hitLine);
+        tmin = (bounds[sign[0]].x - ray.origin.x) * invdir.x;
+        tmax = (bounds[1-sign[0]].x - ray.origin.x) * invdir.x;
+        tymin = (bounds[sign[1]].y - ray.origin.y) * invdir.y;
+        tymax = (bounds[1-sign[1]].y - ray.origin.y) * invdir.y;
+        
+        if ((tmin > tymax) || (tymin > tmax)){
+            return result;
+        }
+        
+        if (tymin > tmin){
+            tmin = tymin;
+        }
+        
+        if (tymax < tmax){
+            tmax = tymax;
+        }
+        
+        
+        tzmin = (bounds[sign[2]].z - ray.origin.z) * invdir.z;
+        tzmax = (bounds[1-sign[2]].z - ray.origin.z) * invdir.z;
+        
+        if ((tmin > tzmax) || (tzmin > tmax)){
+            return result;
+        }
+        
+        if (tzmin > tmin){
+            tmin = tzmin;
+        }
+        if (tzmax < tmax){
+            tmax = tzmax;
+        }
+        
+        t = tmin;
+        
+        if (t < 0) {
+            t = tmax;
+            if (t < 0){
+                return result;
             }
         }
-        //
-        deltaX = maxVertex.x - ray.origin.x;
-        deltaY = deltaX * (ray.direction.y/ray.direction.x);
-        deltaZ = deltaX * (ray.direction.z/ray.direction.x);
-        hitLine = float3(deltaX,deltaY,deltaZ);
-        maxY = ray.origin.y + deltaY;
-        maxZ = ray.origin.z + deltaZ;
-        if(minVertex.y < maxY && maxY < maxVertex.y && minVertex.z < maxZ && maxZ < maxVertex.z){
-            if(length(hitLine) < distance){
-                distance = length(hitLine);
-                result = HitResult(pisHit:true, pdistance: length(hitLine),pnormal: float3(1,0,0),phitVector: ray.origin + hitLine);
-            }
-        }
-        return result;
+        //true
+        return HitResult(pisHit:true, pdistance: t,pnormal: normalAt(point: ray.origin + ray.direction*t),phitVector: ray.origin + ray.direction*t,pmaterial:material);
     }
 }
 
@@ -235,12 +295,12 @@ struct Camera {
         vertical = 2 * half_height * v
     }
     func getRay(s: Float, t: Float) -> Ray {
-        return Ray(origin: origin, direction: bottomLeft + s * horizontal + t * vertical - origin)
+        return Ray(origin: origin, direction: normalize(bottomLeft + s * horizontal + t * vertical - origin))
     }
 }
 
 class Scene:Hitable{
-    var thingList = [Hitable]()
+    var thingList = [Hitable]();
     
     func addThing(thing:Hitable){
         thingList.append(thing);
@@ -248,7 +308,7 @@ class Scene:Hitable{
     
     func hit(ray:Ray) -> HitResult {
         var distance = Float.infinity
-        var result = HitResult(pisHit:false, pdistance: -1,pnormal: float3(),phitVector: float3());
+        var result = HitResult(pisHit:false, pdistance: -1,pnormal: float3(),phitVector: float3(),pmaterial:Lambertian(palbedo:float3(x: 0, y: 0.7, z: 0.3)));
         for thing in thingList{
             let thingResult = thing.hit(ray: ray)
             if(thingResult.isHit){
