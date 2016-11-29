@@ -14,7 +14,7 @@ class ViewController: NSViewController {
         super.viewDidLoad()
         
         DispatchQueue.global(qos: .userInteractive).async {
-            print("This is run on the background queue");
+            print("This is run on the userInteractive queue");
             let rayTrecer = RayTracer();
             let cgImage = rayTrecer.makeTracingResult(width: 800, height: 400, samplerCount: 10,textField: self.percentLabel);
             let size:NSSize = NSSize.init(width: 800, height: 400);
