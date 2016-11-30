@@ -12,15 +12,12 @@ class ViewController: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         DispatchQueue.global(qos: .userInteractive).async {
-            print("This is run on the userInteractive queue");
             let rayTrecer = RayTracer();
-            let cgImage = rayTrecer.makeTracingResult(width: 800, height: 400, samplerCount: 10,textField: self.percentLabel);
+            let cgImage = rayTrecer.makeTracingResult(width: 800, height: 400, samplerCount: 10,self.progressBar);
             let size:NSSize = NSSize.init(width: 800, height: 400);
             let nsImage:NSImage = NSImage.init(cgImage:cgImage , size: size);
             DispatchQueue.main.async {
-                print("This is run on the main queue, after the previous code in outer block");
                 self.imageView.image = nsImage;
             }
         }
@@ -35,7 +32,7 @@ class ViewController: NSViewController {
         }
     }
 
-    @IBOutlet var percentLabel: NSTextField!
+    @IBOutlet var progressBar: NSProgressIndicator!
     @IBOutlet var imageView: NSImageView!
 }
 

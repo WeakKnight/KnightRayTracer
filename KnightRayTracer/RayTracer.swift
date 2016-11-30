@@ -3,7 +3,7 @@ import simd
 import Cocoa
 
 class RayTracer{
-    public func makeTracingResult(width: Int, height: Int, samplerCount:Int = 10, textField:NSTextField) -> CGImage {
+    public func makeTracingResult(width: Int, height: Int, samplerCount:Int = 10, _ progressBar:NSProgressIndicator) -> CGImage {
         //---------------make pixels----------------------//
         var pixel = Pixel(red: 0, green: 0, blue: 0);
         var pixels = [Pixel](repeating: pixel,count: width * height);
@@ -47,7 +47,8 @@ class RayTracer{
                 pixels[i + j * width] = pixel;
                 pointNum += 1;
                 DispatchQueue.main.async {
-                    textField.stringValue = String(pointNum)+"/"+String(total);
+                    //textField.stringValue = String(pointNum)+"/"+String(total);
+                    progressBar.increment(by: 1/3200);
                 }
             }
         }
