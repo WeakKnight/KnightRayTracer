@@ -15,7 +15,8 @@ class RayTracer{
         scene.addThing(thing: sphere1);
         let sphere2 = Sphere(pcenter: float3(-0.1,0.0,-1),pradius: 0.2,pmaterial:Metal(palbedo:float3(x: 0.8, y: 0.3, z: 0.4),pfuzz:0.1));
         scene.addThing(thing: sphere2);
-        let box1 = Box(pminVertex:float3(-0.4,-0.2,-1),pmaxVertex:float3(-0.3,0,-0.8),pmaterial:Metal(palbedo:float3(x: 0.9, y: 0.4, z: 0.4),pfuzz:0.1));
+        //let box1 = Box(pminVertex:float3(-0.4,-0.2,-1),pmaxVertex:float3(-0.3,0,-0.8),pmaterial:Metal(palbedo:float3(x: 0.9, y: 0.4, z: 0.4),pfuzz:0.1));
+        let box1 = Box(pminVertex:float3(-0.4,-0.2,-1),pmaxVertex:float3(-0.3,0,-0.8),pmaterial:Transparent(palbedo:float3(x: 1.0, y: 1.0, z: 1.0),prefractiveIndex:1.3));
         scene.addThing(thing: box1);
         let sphere3 = Sphere(pcenter: float3(-0.35,-0.1,-0.65),pradius: 0.05,pmaterial:Metal(palbedo:float3(x: 0.3, y: 0.3, z: 0.6),pfuzz:0.1));
         scene.addThing(thing: sphere3);
@@ -32,7 +33,7 @@ class RayTracer{
         let cam = Camera(lookFrom: lookFrom, lookAt: lookAt, vup: vup, vfov: 50, aspect: Float(width) / Float(height));
         //
         var pointNum:Int = 0;
-        let total = (width*height);
+        //let total:Int = (width*height);
         for i in 0..<width {
             for j in 0..<height {
                 var col = float3()

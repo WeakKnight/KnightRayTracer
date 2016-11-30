@@ -15,8 +15,9 @@ public struct Pixel {
 }
 
 struct Ray {
-    var origin: float3
-    var direction: float3
+    var origin: float3;
+    var direction: float3;
+    var currentRefractIndex: Float = 1;
 }
 
 struct Light {
@@ -100,6 +101,6 @@ struct Camera {
         vertical = 2 * half_height * v
     }
     func getRay(s: Float, t: Float) -> Ray {
-        return Ray(origin: origin, direction: normalize(bottomLeft + s * horizontal + t * vertical - origin))
+        return Ray(origin: origin, direction: normalize(bottomLeft + s * horizontal + t * vertical - origin),currentRefractIndex:1.0)
     }
 }
