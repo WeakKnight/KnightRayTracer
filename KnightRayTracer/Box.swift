@@ -30,6 +30,7 @@ class Box:Hitable{
     var material:Material = Lambertian(palbedo:float3(x: 0, y: 0.7, z: 0.3));
     var bounds = [float3]();
     init(pminVertex:float3,pmaxVertex:float3,pmaterial:Material){
+        assert(pmaxVertex.x>pminVertex.x && pmaxVertex.y>pminVertex.y && pmaxVertex.z>pminVertex.z);
         bounds.append(pminVertex);
         bounds.append(pmaxVertex);
         material = pmaterial;
