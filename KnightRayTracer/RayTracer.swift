@@ -16,10 +16,12 @@ class RayTracer{
         let sphere2 = Sphere(pcenter: float3(-0.1,0.0,-1),pradius: 0.2,pmaterial:Metal(palbedo:float3(x: 0.8, y: 0.3, z: 0.4),pfuzz:0.1));
         scene.addThing(thing: sphere2);
         //let box1 = Box(pminVertex:float3(-0.4,-0.2,-1),pmaxVertex:float3(-0.3,0,-0.8),pmaterial:Metal(palbedo:float3(x: 0.9, y: 0.4, z: 0.4),pfuzz:0.1));
-        let box1 = Box(pminVertex:float3(-0.4,-0.2,-1),pmaxVertex:float3(-0.3,0,-0.8),pmaterial:Transparent(palbedo:float3(x: 1.0, y: 1.0, z: 1.0),prefractiveIndex:1.3));
+        let box1 = Box(pminVertex:float3(-0.4,-0.2,-1),pmaxVertex:float3(-0.3,0,-0.8),pmaterial:Metal(palbedo:float3(x: 0.3, y: 0.3, z: 0.6),pfuzz:0.1));
         scene.addThing(thing: box1);
-        let sphere3 = Sphere(pcenter: float3(-0.35,-0.1,-0.65),pradius: 0.05,pmaterial:Metal(palbedo:float3(x: 0.3, y: 0.3, z: 0.6),pfuzz:0.1));
+        let sphere3 = Sphere(pcenter: float3(-0.25,-0.1,-0.65),pradius: 0.05,pmaterial:Transparent(prefractiveIndex:1.1));
         scene.addThing(thing: sphere3);
+        let sphere4 = Sphere(pcenter: float3(0.1,0.0,-0.65),pradius: 0.08,pmaterial:Transparent(prefractiveIndex:0.97));
+        scene.addThing(thing: sphere4);
         //p1: float3(-0.5,0,-1), p2: float3(-0.3,0.2,-0.8), p3: float3(-0.4,0.3,-0.9)
 //        let triangle1 = Triangle(p1: float3(-0.4,-0.2,-1), p2: float3(-0.3,0,-0.8), p3: float3(-0.4,0.3,-0.9), pmaterial: Metal(palbedo:float3(x: 0.4, y: 0.3, z: 0.8),pfuzz:0.1));
 //        scene.addThing(thing: triangle1);

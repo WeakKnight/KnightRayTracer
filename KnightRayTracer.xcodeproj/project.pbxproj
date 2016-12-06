@@ -69,15 +69,15 @@
 				DE458D0C1DEC0F5600CD6FE7 /* RayTracer.swift */,
 				DE458D0D1DEC0F5600CD6FE7 /* Things.swift */,
 				DE458D0E1DEC0F5600CD6FE7 /* Material.swift */,
+				DEB908031DED37CB0099CC80 /* Triangle.swift */,
+				DEB908051DED70D10099CC80 /* Scene.swift */,
+				DEB908011DED28490099CC80 /* Box.swift */,
 				DEB907FF1DEC206A0099CC80 /* Util.swift */,
 				DE458CFD1DEC0E9900CD6FE7 /* AppDelegate.swift */,
 				DE458CFF1DEC0E9900CD6FE7 /* ViewController.swift */,
 				DE458D011DEC0E9900CD6FE7 /* Assets.xcassets */,
 				DE458D031DEC0E9900CD6FE7 /* Main.storyboard */,
 				DE458D061DEC0E9900CD6FE7 /* Info.plist */,
-				DEB908011DED28490099CC80 /* Box.swift */,
-				DEB908031DED37CB0099CC80 /* Triangle.swift */,
-				DEB908051DED70D10099CC80 /* Scene.swift */,
 			);
 			path = KnightRayTracer;
 			sourceTree = "<group>";

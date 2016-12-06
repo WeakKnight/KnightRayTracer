@@ -37,14 +37,7 @@ class Scene:Hitable{
         if(hitResult.isHit){
             let scatterResult = hitResult.material.scatter(ray: ray, hitRes: hitResult);
             if(scatterResult.isScatter && calDepth < 50){
-                if(scatterResult.isRefracted){
-                    let reflectColor = scatterResult.RSchlick * scatterResult.attenuation * color(ray: scatterResult.scatterRay,calDepth: nextDepth);
-                    let refractColor = (1 - scatterResult.RSchlick) * scatterResult.attenuation * color(ray: scatterResult.refractRay,calDepth:nextDepth);
-                    return  reflectColor + refractColor;
-                }
-                else{
-                    return scatterResult.attenuation * color(ray: scatterResult.scatterRay,calDepth: nextDepth);
-                }
+                return scatterResult.attenuation * color(ray: scatterResult.scatterRay,calDepth: nextDepth);
             }
             else{
                 return float3(0,0,0);

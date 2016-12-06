@@ -14,7 +14,7 @@ class ViewController: NSViewController {
         super.viewDidLoad()
         DispatchQueue.global(qos: .userInteractive).async {
             let rayTrecer = RayTracer();
-            let cgImage = rayTrecer.makeTracingResult(width: 800, height: 400, samplerCount: 10,self.progressBar);
+            let cgImage = rayTrecer.makeTracingResult(width: 800, height: 400, samplerCount: 100,self.progressBar);
             let size:NSSize = NSSize.init(width: 800, height: 400);
             let nsImage:NSImage = NSImage.init(cgImage:cgImage , size: size);
             DispatchQueue.main.async {

@@ -25,3 +25,19 @@ func randomVectorInUnitSphere() -> float3 {
     } while dot(p, p) >= 1.0
     return p
 }
+
+func refract(v: float3, n: float3, ni_over_nt: Float) -> float3? {
+    let uv = normalize(v)
+    let dt = dot(uv, n)
+    let discriminant = 1.0 - ni_over_nt * ni_over_nt * (1.0 - dt * dt)
+    if discriminant > 0 {
+        return ni_over_nt * (uv - n * dt) - n * sqrt(discriminant)
+    }
+    return nil
+}
+
+func schlick(_ cosine: Float, _ index: Float) -> Float {
+    var r0 = (1 - index) / (1 + index)
+    r0 = r0 * r0
+    return r0 + (1 - r0) * powf(1 - cosine, 5)
+}
